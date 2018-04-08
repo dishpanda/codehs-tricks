@@ -1,0 +1,153 @@
+<html>
+<head>
+<title>CODEHS JS LIBRARY TRIXX</title>
+<meta charset="utf-8"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://static.codehs.com/gulp/3d065bc81d3b7edf21e928ce2c764374a03c5cd6/chs-js-lib/chs.js"></script>
+
+
+<style>
+canvas {
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: top;
+}
+
+pre {
+    border: 1px solid black;
+    display: inline-block;
+    width: 400px;
+    height: 500px;
+    background-color: #F5F5F5;
+}
+
+body {
+    font-family: Helvetica, sans-serif
+}
+</style>
+
+</head>
+
+<body>
+<h1>CODEHS JS LIBRARY TRIXX</h1>
+
+
+
+<canvas
+width="400"
+height="500"
+class="codehs-editor-canvas"></canvas>
+
+<script>
+window.onload = function() {
+    var WIDTH = getWidth();
+    var HEIGHT = getHeight();
+    var NUM_BUTTONS = 4;
+    var BUTTON_HEIGHT = HEIGHT/NUM_BUTTONS;
+
+    setBackgroundColor("#D3D3D3");
+    initButtons();
+    mouseClickMethod(clickHandler);
+
+    function initButtons(){
+        for(var i = 0; i < 5; ++i){
+            drawRect(WIDTH, BUTTON_HEIGHT, 0, i * BUTTON_HEIGHT, "#4a5459", "#2c3235");
+        }
+        
+        //TODO: ARROWS that point to right (not necessary, though.)
+        //TODO: TEXT that tells you what each button does.
+    }
+
+    function drawRect(l, w, x, y, color, borderColor){
+        var rect = new Rectangle(l, w);
+        rect.setPosition(x, y);
+        rect.setColor(color);
+        rect.setBorderColor(borderColor);
+        add(rect);
+    }
+
+    function writeText(label, x, y, color){
+        var text = new Text(label, "12pt Helvetica");
+        text.setPosition(x, y);
+        text.setColor(color);
+        add(text);
+    }
+
+    function clickHandler(e){
+        var x = e.getX();
+        var y = e.getY();
+        switch(getButtonClick(y)){
+            case 1:
+                degToRadActivity();
+                break;
+            case 2:
+                sineActivity();
+                break;
+            case 3:
+                cosineActivity();
+                break;
+            case 4:
+                tangentActivity();
+                break;
+        }
+    }
+
+    function getButtonClick(y){
+        var btn = Math.floor(y / BUTTON_HEIGHT) + 1;
+        return btn;
+    }
+//---------------------------------------------------------------------------------------------------------
+//Degrees to Radians Activity (exec after btn 1 is clicked)
+
+    function degToRadActivity(){
+        removeAll();
+        setBackgroundColor("#D3D3D3");
+        drawRect(WIDTH - 50, HEIGHT - 100, 25, 50, "#4a5459", "#2c3235");
+        degToRad();
+    }
+
+    function degToRad(){
+        var theta = readInt("Enter an integer angle, in degrees, to convert to radians.");
+
+        if(checkIfAngleNegative(theta)){
+            theta = 360 + theta;
+        }
+        var theta_rad = (theta * Math.PI) / 180;
+        writeText(theta + "° in rad is " + theta_rad + " rad", 50, 110, Color.WHITE);
+    }
+
+//----------------------------------------------------------------------------------------------------------
+//Sine of an angle Activity (exec after btn 2 is clicked)
+
+
+    function sine(){
+
+    }
+
+    function cosine(){
+
+    }
+
+    function tangent(){
+
+    }
+
+    function checkIfAngleNegative(theta){
+        if(theta < 0){
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+};
+</script>
+
+</body>
+</html>
