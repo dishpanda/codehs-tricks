@@ -97,41 +97,70 @@ window.onload = function() {
         var btn = Math.floor(y / BUTTON_HEIGHT) + 1;
         return btn;
     }
+
+    function setupCard(){
+        removeAll();
+        setBackgroundColor("#D3D3D3");
+        drawRect(WIDTH - 50, HEIGHT - 100, 25, 50, "#4a5459", "#2c3235");
+    }
 //---------------------------------------------------------------------------------------------------------
 //Degrees to Radians Activity (exec after btn 1 is clicked)
 
     function degToRadActivity(){
-        removeAll();
-        setBackgroundColor("#D3D3D3");
-        drawRect(WIDTH - 50, HEIGHT - 100, 25, 50, "#4a5459", "#2c3235");
-        degToRad();
+        setupCard();
+        var theta = readInt("Enter an integer angle, in degrees, to convert to radians.");
+        degToRad(theta);
     }
 
-    function degToRad(){
-        var theta = readInt("Enter an integer angle, in degrees, to convert to radians.");
-
+    function degToRad(theta){
         if(checkIfAngleNegative(theta)){
             theta = 360 + theta;
         }
-        var theta_rad = (theta * Math.PI) / 180;
-        writeText(theta + "° in rad is " + theta_rad + " rad", 50, 110, Color.WHITE);
+        var theta_rad = theta / 180;
+        writeText(theta + "° in rad is " + theta_rad + "π rad", 50, 110, Color.WHITE);
     }
 
 //----------------------------------------------------------------------------------------------------------
 //Sine of an angle Activity (exec after btn 2 is clicked)
 
+    function sineActivity(){
+        setupCard();
+        sine(); 
+    }
 
     function sine(){
-
+        var theta = readInt("Enter an integer angle, in degrees, to perform the sine");
+        
     }
+
+//----------------------------------------------------------------------------------------------------------
+//Cosine of an angle Activity (exec after btn 3 is clicked)
+
+    function cosineActivity(){
+        setupCard();
+        cosine(); 
+    }
+
 
     function cosine(){
 
     }
 
+//----------------------------------------------------------------------------------------------------------
+//Tangent of an angle Activity (exec after btn 4 is clicked)
+
+    function tangentActivity(){
+        setupCard();
+        tangent(); 
+    }
+
+
     function tangent(){
 
     }
+
+//----------------------------------------------------------------------------------------------------------
+//Angle positive or negative checker
 
     function checkIfAngleNegative(theta){
         if(theta < 0){
@@ -139,12 +168,6 @@ window.onload = function() {
         }
         return false;
     }
-
-
-
-
-
-
 
 };
 </script>
